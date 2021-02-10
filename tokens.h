@@ -50,4 +50,5 @@ extern YYSTYPE yylval;
 # define VAR 298
 # define TYPE 299
 # define REAL 300
+# define NULLCOALESCE 301
 

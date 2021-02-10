@@ -13,7 +13,7 @@ in
 	)
 
 	if a = b & b = a then (
-		printf("THEY ARE EQUAL !");
+		printf("THEY ARE EQUAL !"); /* THEY ARE EQUAL MERMO ! */
 	)
 
 	if a > b | a = b then (
@@ -45,5 +45,7 @@ in
 		a := b*a;
 		c := a*10;
 	)
+
+    a := b ?? 69;
 
 end
