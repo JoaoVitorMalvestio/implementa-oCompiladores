@@ -1,6 +1,9 @@
 a.out: parsetest.o y.tab.o lex.yy.o errormsg.o util.o
 	cc -g parsetest.o y.tab.o lex.yy.o errormsg.o util.o
 
+lextest: driver.o lex.yy.o errormsg.o util.o
+	cc -g -o lextest driver.o lex.yy.o errormsg.o util.o
+
 parsetest.o: parsetest.c errormsg.h util.h
 	cc -g -c parsetest.c
 
@@ -26,4 +29,5 @@ util.o: util.c util.h
 	cc -g -c util.c
 
 clean: 
+	rm -f a.out util.o driver.o lex.yy.o lex.yy.c errormsg.o
 	rm -f a.out util.o parsetest.o lex.yy.o errormsg.o y.tab.c y.tab.h y.tab.o

@@ -4,11 +4,18 @@
 #include "tokens.h"
 #include "errormsg.h"
 
-extern YYLTYPE yylloc;
+typedef struct YYLTYPE
+{
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
+} YYLTYPE;
+
+YYLTYPE yylloc;
 int commentDepth = 0;
 
 int charPos=1;
-#define ADJ ()
 
 void ADJ () {
 	EM_tokPos=charPos, charPos+=yyleng;
