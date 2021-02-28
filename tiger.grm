@@ -31,6 +31,16 @@ void yyerror(char *s)
   BREAK NIL
   FUNCTION VAR TYPE 
 
+%type void program
+%type void root
+%type void exp
+%type void let
+%type void decs
+%type void dec
+%type void explist
+%type void vardec
+%type void id
+
 %start program
 
 %%
@@ -46,107 +56,28 @@ program:             root                              {}
 root:           /* empty */                         {}
                 | exp								{}
 
-exp:              INT                       		{}
-                | STRING							{}
-                | NIL								{}
-                | lvalue							{}
-                | lvalue ASSIGN exp					{}
-                | LPAREN explist RPAREN				{}
-                | cond						    	{}
-                | let						    	{}
-                | exp OR exp						{}
-                | exp AND exp						{}
-                | exp LT exp						{}
-                | exp GT exp						{}
-                | exp LE exp						{}
-                | exp GE exp						{}
-                | exp PLUS exp						{}
-                | exp MINUS exp						{}
-                | exp TIMES exp						{}
-                | exp DIVIDE exp					{}
-                | MINUS exp %prec UMINUS			{}
-                | exp EQ exp						{}
-                | exp NEQ exp						{}
-                | id LPAREN arglist RPAREN			{}
-                | id LBRACK exp RBRACK OF exp		{}
-                | id LBRACE reclist RBRACE			{}
-                | BREAK								{}
+exp:              INT                       		{printf("Eu sou um inteiro\n");}
+                | let						    	{printf("Eu sou um let\n");}                
                 ;
 
-reclist:        /* empty */                         {}
-                | id EQ exp							{}
-                | id EQ exp	COMMA reclist		{}
-
-let:              LET decs IN explist END			{}
-                ;
-
-arglist:        /* empty */							{}
-                | nonarglist						{}
-                ;
-
-nonarglist:       exp								{}
-                | exp COMMA nonarglist				{}
+let:              LET decs IN explist END			{printf("Eu sou um let\n");}
                 ;
 
 decs:           /* empty */							{}
                 | dec decs							{}
                 ;
 
-dec:              tydec 							{}
-                | vardec							{}
-                | fundec							{}
+dec:            vardec							{}
                 ;
 
-// tydecs:           tydec	%prec LOW                   {}
-                //| tydec tydecs						{}
-                //;
-
-lvalue:           id %prec LOW                      {}
-                | id LBRACK exp RBRACK 				{}
-                | lvalue LBRACK exp RBRACK			{}
-                | lvalue DOT id						{}
-                ;
-
-explist:		/* empty */							{}
-                | exp								{}
-                | exp SEMICOLON explist				{}
-                ;
-
-cond:             IF exp THEN exp ELSE exp			{}
-                | IF exp THEN exp					{}
-                | WHILE exp DO exp					{}
-                | FOR id ASSIGN exp TO exp DO exp	{}
-                ;
-
-tydec:            TYPE id EQ ty						{}
-                ;
-
-ty:               id								{}
-                | LBRACE tyfields RBRACE			{}
-                | ARRAY OF id						{}
-                ;
-
-tyfields:       /* empty */							{}
-                | tyfield							{}
-                | tyfield COMMA tyfields			{}
-                ;
-
-tyfield:          id COLON id						{}
+explist:		    /* empty */							{}
                 ;
 
 vardec:           VAR id ASSIGN exp					{}
                 | VAR id COLON id ASSIGN exp		{}
                 ;
 
-id:               ID								{}
-                ;
-
-//fundecs:          fundec %prec LOW                  {}
-                //| fundec fundecs					{}
-                //;
-
-fundec:           FUNCTION id LPAREN tyfields RPAREN EQ exp				{}
-                | FUNCTION id LPAREN tyfields RPAREN COLON id EQ exp	{}
+id:               ID								{printf("Eu sou um id\n");}
                 ;
 
 %%

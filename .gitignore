@@ -1,5 +1,11 @@
 *.out
 lex.yy.c
+lex.yy.o
 *.output
 y.tab.c
 y.tab.h
+y.tab.o
+util.o
+drive.o
+errormsg.o
+parsetest.o

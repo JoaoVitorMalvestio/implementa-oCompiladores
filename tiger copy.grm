@@ -1,0 +1,152 @@
+%{
+#include <stdio.h>
+#include "util.h"
+#include "errormsg.h"
+
+int yylex(void); /* function prototype */
+
+void yyerror(char *s)
+{
+ EM_error(EM_tokPos, "%s", s);
+}
+%}
+
+%locations
+
+%union {
+	int pos;
+	int ival;
+	string sval;
+	}
+
+%token <sval> ID STRING
+%token <ival> INT
+
+%token 
+  COMMA COLON SEMICOLON LPAREN RPAREN LBRACK RBRACK 
+  LBRACE RBRACE DOT 
+  PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE
+  AND OR ASSIGN
+  ARRAY IF THEN ELSE WHILE FOR TO DO LET IN END OF 
+  BREAK NIL
+  FUNCTION VAR TYPE 
+
+%start program
+
+%%
+
+/* This is a skeleton grammar file, meant to illustrate what kind of
+ * declarations are necessary above the %% mark.  Students are expected
+ *  to replace the two dummy productions below with an actual grammar. 
+ */
+
+program:             root                              {}
+                ;
+
+root:           /* empty */                         {}
+                | exp								{}
+
+exp:              INT                       		{printf("Eu sou um inteiro\n");}
+                | STRING							{}
+                | NIL								{}
+                | lvalue							{}
+                | lvalue ASSIGN exp					{}
+                | LPAREN explist RPAREN				{}
+                | cond						    	{}
+                | let						    	{printf("Eu sou um let\n");}
+                | exp OR exp						{}
+                | exp AND exp						{}
+                | exp LT exp						{}
+                | exp GT exp						{}
+                | exp LE exp						{}
+                | exp GE exp						{}
+                | exp PLUS exp						{}
+                | exp MINUS exp						{}
+                | exp TIMES exp						{}
+                | exp DIVIDE exp					{}
+                | MINUS exp %prec UMINUS			{}
+                | exp EQ exp						{}
+                | exp NEQ exp						{}
+                | id LPAREN arglist RPAREN			{}
+                | id LBRACK exp RBRACK OF exp		{}
+                | id LBRACE reclist RBRACE			{}
+                | BREAK								{}
+                ;
+
+reclist:        /* empty */                         {}
+                | id EQ exp							{}
+                | id EQ exp	COMMA reclist		{}
+
+let:              LET decs IN explist END			{printf("Eu sou um let\n");}
+                ;
+
+arglist:        /* empty */							{}
+                | nonarglist						{}
+                ;
+
+nonarglist:       exp								{}
+                | exp COMMA nonarglist				{}
+                ;
+
+decs:           /* empty */							{}
+                | dec decs							{}
+                ;
+
+dec:              TYPE 							  {printf("Eu sou um type\n");}
+                | vardec							{}
+                | fundec							{}
+                ;
+
+// tydecs:           tydec	%prec LOW                   {}
+                //| tydec tydecs						{}
+                //;
+
+lvalue:           id %prec LOW                      {}
+                | id LBRACK exp RBRACK 				{}
+                | lvalue LBRACK exp RBRACK			{}
+                | lvalue DOT id						{}
+                ;
+
+explist:		/* empty */							{}
+                | exp								{}
+                | exp SEMICOLON explist				{}
+                ;
+
+cond:             IF exp THEN exp ELSE exp			{}
+                | IF exp THEN exp					{}
+                | WHILE exp DO exp					{}
+                | FOR id ASSIGN exp TO exp DO exp	{}
+                ;
+
+tydec:            TYPE id EQ ty						{}
+                ;
+
+ty:               id								{}
+                | LBRACE tyfields RBRACE			{}
+                | ARRAY OF id						{printf("Eu sou um array\n");}
+                ;
+
+tyfields:       /* empty */							{}
+                | tyfield							{}
+                | tyfield COMMA tyfields			{}
+                ;
+
+tyfield:          id COLON id						{}
+                ;
+
+vardec:           VAR id ASSIGN exp					{}
+                | VAR id COLON id ASSIGN exp		{}
+                ;
+
+id:               ID								{printf("Eu sou um id\n");}
+                ;
+
+//fundecs:          fundec %prec LOW                  {}
+                //| fundec fundecs					{}
+                //;
+
+fundec:           FUNCTION id LPAREN tyfields RPAREN EQ exp				{}
+                | FUNCTION id LPAREN tyfields RPAREN COLON id EQ exp	{}
+                ;
+
+%%
