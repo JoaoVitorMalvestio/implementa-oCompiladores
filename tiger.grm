@@ -31,15 +31,15 @@ void yyerror(char *s)
   BREAK NIL
   FUNCTION VAR TYPE 
 
-%type void program
-%type void root
-%type void exp
-%type void let
-%type void decs
-%type void dec
-%type void explist
-%type void vardec
-%type void id
+%type <void> program
+%type <void> root
+%type <void> exp
+%type <void> let
+%type <void> decs
+%type <void> dec
+%type <void> explist
+%type <void> vardec
+%type <void> id
 
 %start program
 
