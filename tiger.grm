@@ -13,10 +13,10 @@ void yyerror(char *s)
 
 
 %union {
-	int pos;
-	int ival;
-	string sval;
-	}
+  int pos;
+  int ival;
+  string sval;
+  }
 
 %token <sval> ID STRING
 %token <ival> INT
@@ -39,6 +39,6 @@ void yyerror(char *s)
  *  to replace the two dummy productions below with an actual grammar. 
  */
 
-program:	exp
+program:  exp
 
 exp:   ID
