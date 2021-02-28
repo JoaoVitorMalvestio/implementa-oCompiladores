@@ -11,12 +11,13 @@ void yyerror(char *s)
 }
 %}
 
+%locations
 
 %union {
-  int pos;
-  int ival;
-  string sval;
-  }
+	int pos;
+	int ival;
+	string sval;
+	}
 
 %token <sval> ID STRING
 %token <ival> INT
@@ -39,6 +40,113 @@ void yyerror(char *s)
  *  to replace the two dummy productions below with an actual grammar. 
  */
 
-program:  exp
+program:             root                              {}
+                ;
 
-exp:   ID
+root:           /* empty */                         {}
+                | exp								{}
+
+exp:              INT                       		{}
+                | STRING							{}
+                | NIL								{}
+                | lvalue							{}
+                | lvalue ASSIGN exp					{}
+                | LPAREN explist RPAREN				{}
+                | cond						    	{}
+                | let						    	{}
+                | exp OR exp						{}
+                | exp AND exp						{}
+                | exp LT exp						{}
+                | exp GT exp						{}
+                | exp LE exp						{}
+                | exp GE exp						{}
+                | exp PLUS exp						{}
+                | exp MINUS exp						{}
+                | exp TIMES exp						{}
+                | exp DIVIDE exp					{}
+                | MINUS exp %prec UMINUS			{}
+                | exp EQ exp						{}
+                | exp NEQ exp						{}
+                | id LPAREN arglist RPAREN			{}
+                | id LBRACK exp RBRACK OF exp		{}
+                | id LBRACE reclist RBRACE			{}
+                | BREAK								{}
+                ;
+
+reclist:        /* empty */                         {}
+                | id EQ exp							{}
+                | id EQ exp	COMMA reclist		{}
+
+let:              LET decs IN explist END			{}
+                ;
+
+arglist:        /* empty */							{}
+                | nonarglist						{}
+                ;
+
+nonarglist:       exp								{}
+                | exp COMMA nonarglist				{}
+                ;
+
+decs:           /* empty */							{}
+                | dec decs							{}
+                ;
+
+dec:              tydec 							{}
+                | vardec							{}
+                | fundec							{}
+                ;
+
+// tydecs:           tydec	%prec LOW                   {}
+                //| tydec tydecs						{}
+                //;
+
+lvalue:           id %prec LOW                      {}
+                | id LBRACK exp RBRACK 				{}
+                | lvalue LBRACK exp RBRACK			{}
+                | lvalue DOT id						{}
+                ;
+
+explist:		/* empty */							{}
+                | exp								{}
+                | exp SEMICOLON explist				{}
+                ;
+
+cond:             IF exp THEN exp ELSE exp			{}
+                | IF exp THEN exp					{}
+                | WHILE exp DO exp					{}
+                | FOR id ASSIGN exp TO exp DO exp	{}
+                ;
+
+tydec:            TYPE id EQ ty						{}
+                ;
+
+ty:               id								{}
+                | LBRACE tyfields RBRACE			{}
+                | ARRAY OF id						{}
+                ;
+
+tyfields:       /* empty */							{}
+                | tyfield							{}
+                | tyfield COMMA tyfields			{}
+                ;
+
+tyfield:          id COLON id						{}
+                ;
+
+vardec:           VAR id ASSIGN exp					{}
+                | VAR id COLON id ASSIGN exp		{}
+                ;
+
+id:               ID								{}
+                ;
+
+//fundecs:          fundec %prec LOW                  {}
+                //| fundec fundecs					{}
+                //;
+
+fundec:           FUNCTION id LPAREN tyfields RPAREN EQ exp				{}
+                | FUNCTION id LPAREN tyfields RPAREN COLON id EQ exp	{}
+                ;
+
+%%

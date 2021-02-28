@@ -4,10 +4,17 @@
 #include "tokens.h"
 #include "errormsg.h"
 
+extern YYLTYPE yylloc;
 int commentDepth = 0;
 
 int charPos=1;
-#define ADJ (EM_tokPos=charPos, charPos+=yyleng)
+#define ADJ ()
+
+void ADJ () {
+	EM_tokPos=charPos, charPos+=yyleng;
+	yylloc.first_line = 1;
+	printf(yylloc.first_line);
+}
 
 int yywrap(void)
 {
