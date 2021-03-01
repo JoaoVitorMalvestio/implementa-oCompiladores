@@ -45,26 +45,108 @@ void yyerror(char *s)
 program: root{};
 
 root: /* empty */ {}
-      |exp{};
+      |exp {}
+      ;
 
 exp:    INT {printTest("INT");}
       | STRING {printTest("STRING");}
       | NIL {printTest("NILL");}
+      | lvalue {printTest("LVALUE");}
+      | lvalue ASSIGN exp {printTest("LVALUE ASSIGN");}
+      | lparen explist rparen {printTest("LPAREN RPAREN");}
+      | cond {printTest("COND");}
       | let {printTest("LET");}
+      | exp OR exp {printTest("OR");}
+      | exp AND exp {printTest("AND");}
+      | exp LT exp {printTest("LT");}
+      | exp GT exp {printTest("GT");}
+      | exp LE exp {printTest("LE");}
+      | exp GE exp {printTest("GE");}
+      | exp PLUS exp {printTest("PLUS");}
+      | exp MINUS exp {printTest("MINUS");}
+      | exp TIMES exp {printTest("TIMES");}
+      | exp DIVIDE exp {printTest("DIVIDE");}
+      | MINUS exp %prec UMINUS {printTest("MINUS UMINUS");}
+      | exp EQ exp {printTest("EQ");}
+      | exp NEQ exp {printTest("NEQ");}
+      | id lparen arglist rparen {printTest("FUNCTION LPAREN RPAREN");}
+      | id LBRACK exp RBRACK OF exp {printTest("LBRACK RBRACK OF");}
+      | id LBRACE reclist RBRACE {printTest("LBRACE RBRACE");}
+      | BREAK {printTest("BREAK");}
       ;
-let:    LET decs IN explist END {printTest("Expressão LET");}
+
+reclist:    /* empty */ {}
+      | id EQ exp	{printTest("RECLIST");}
+      | id EQ exp	COMMA reclist {printTest("RECLIST COMMA");}
+
+let:  LET decs IN explist END {printTest("EXPRESSION LET");}
       ;
-decs:   /* empty */ {}
+
+arglist:    /* empty */ {}
+      | nonarglist {printTest("ARGLIST");}
+      ;
+
+nonarglist: exp {printTest("NONARGLIST");}
+      | exp COMMA nonarglist {printTest("NONARGLIST COMMA");}
+      ;
+
+decs: /* empty */ {}
       | dec decs {printTest("EXPRESSION DEC DECS");}
       ;
-dec:    vardec {printTest("EXPRESSION DEC");}
+
+dec:  TYPE {printTest("DEC TYPE");}
+      | vardec {printTest("DEC VARDEC");}
+      | fundec {printTest("DE FUNDEC");}
       ;
-explist: /* empty */ {}
+
+lvalue:     id %prec LOW {printTest("LOW");}
+      | id LBRACK exp RBRACK {printTest("ID LBRACK RBRACK");}
+      | lvalue LBRACK exp RBRACK {printTest("LVALUE LBRACK RBRACK");}
+      | lvalue DOT id {printTest("LVALUE DOT");}
       ;
+
+explist:    /* empty */ {}
+      | exp	{printTest("EXPLIST");}
+      | exp SEMICOLON explist {printTest("EXPLIST SEMICOLON");}
+      ;
+
+cond: IF exp THEN exp ELSE exp {printTest("IF THEN ELSE");}
+      | IF exp THEN exp	{printTest("IF THEN");}
+      | WHILE exp DO exp {printTest("WHILE DO");}
+      | FOR id ASSIGN exp TO exp DO exp {printTest("FOR ASSIGN TO DO");}
+      ;
+
+tydec:      TYPE id EQ ty {printTest("TYDEC");}
+      ;
+
+ty:   id {}
+      | LBRACE tyfields RBRACE {printTest("LBRACE RBRACE");}
+      | ARRAY OF id {printTest("ARRAY OF");}
+      ;
+
+tyfields:   /* empty */	{}
+      | tyfield {printTest("TYFIELDS");}
+      | tyfield COMMA tyfields {printTest("TYFIELDS COMMA");}
+      ;
+
+tyfield:    id COLON id {printTest("TYFIELD");}
+      ;
+
 vardec: VAR id ASSIGN exp {printTest("VARDEC");}
-      | VAR id COLON id ASSIGN exp {printTest("VAR DEC COLON");}
+      | VAR id COLON id ASSIGN exp {printTest("VARDEC COLON");}
       ;
-id:     ID {printTest("ID");}
+
+id:   ID {printTest("ID");}
+      ;
+
+fundec: FUNCTION id lparen tyfields rparen EQ exp {printTest("FUNDEC");}
+      | FUNCTION id lparen tyfields rparen COLON id EQ exp	{printTest("FUNDEC COLON");}
+      ;
+
+lparen: LPAREN {printTest("LPAREN");}
+      ;
+
+rparen: RPAREN {printTest("RPAREN");}
       ;
 
 %%
