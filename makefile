@@ -1,4 +1,4 @@
-a.out: parsetest.o y.tab.o lex.yy.o errormsg.o util.o
+a.out: clean lextest parsetest.o y.tab.o lex.yy.o errormsg.o util.o
 	cc -g parsetest.o y.tab.o lex.yy.o errormsg.o util.o
 
 lextest: driver.o lex.yy.o errormsg.o util.o
