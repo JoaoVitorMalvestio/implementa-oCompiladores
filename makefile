@@ -10,8 +10,8 @@ parsetest.o: parsetest.c errormsg.h util.h
 y.tab.o: y.tab.c
 	cc -g -c y.tab.c
 
-y.tab.c: tiger.grm
-	yacc -dv tiger.grm
+y.tab.c: tiger.y
+	yacc -dv tiger.y
 
 y.tab.h: y.tab.c
 	echo "y.tab.h was created at the same time as y.tab.c"
@@ -22,8 +22,8 @@ errormsg.o: errormsg.c errormsg.h util.h
 lex.yy.o: lex.yy.c y.tab.h errormsg.h util.h
 	cc -g -c lex.yy.c
 
-lex.yy.c: tiger.lex
-	lex tiger.lex
+lex.yy.c: tiger.l
+	lex tiger.l
 
 util.o: util.c util.h
 	cc -g -c util.c

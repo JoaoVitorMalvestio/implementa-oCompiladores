@@ -6,7 +6,7 @@ y.tab.c
 y.tab.h
 y.tab.o
 util.o
-drive.o
+driver.o
 errormsg.o
 parsetest.o
 lextest
