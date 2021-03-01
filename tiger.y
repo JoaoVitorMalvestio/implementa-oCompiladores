@@ -22,7 +22,7 @@ void yyerror(char *s)
 	int pos;
 	int ival;
 	string sval;
-	}
+}
 
 %error-verbose
 %token <sval> ID STRING
