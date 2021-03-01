@@ -47,22 +47,22 @@ program: root{};
 root: /* empty */ {}
       |exp{};
 
-exp:    INT {printTest("Inteiro");}
-      | STRING {}
-      | NIL {}
+exp:    INT {printTest("INT");}
+      | STRING {printTest("STRING");}
+      | NIL {printTest("NILL");}
       | let {printTest("LET");}
       ;
 let:    LET decs IN explist END {printTest("Expressão LET");}
       ;
 decs:   /* empty */ {}
-      | dec decs {}
+      | dec decs {printTest("EXPRESSION DEC DECS");}
       ;
-dec:    vardec {}
+dec:    vardec {printTest("EXPRESSION DEC");}
       ;
 explist: /* empty */ {}
       ;
-vardec: VAR id ASSIGN exp {}
-      | VAR id COLON id ASSIGN exp {}
+vardec: VAR id ASSIGN exp {printTest("VARDEC");}
+      | VAR id COLON id ASSIGN exp {printTest("VAR DEC COLON");}
       ;
 id:     ID {printTest("ID");}
       ;
