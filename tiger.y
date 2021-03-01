@@ -65,6 +65,6 @@ vardec: VAR id ASSIGN exp {}
       | VAR id COLON id ASSIGN exp {}
       ;
 id:     ID {printTest("ID");}
-;
+      ;
 
 %%
