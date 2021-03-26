@@ -1,17 +1,10 @@
 %{
 #include <string.h>
 #include "util.h"
-#include "tokens.h"
 #include "errormsg.h"
+#include "tiger.tab.h"
 
-typedef struct YYLTYPE
-{
-  int first_line;
-  int first_column;
-  int last_line;
-  int last_column;
-} YYLTYPE;
-
+YYSTYPE yylval;
 YYLTYPE yylloc;
 int commentDepth = 0;
 
@@ -87,7 +80,7 @@ int yywrap(void)
 \"[^\"]*\"							{ADJ(); yylval.sval=String(yytext); return STRING;}
 [a-zA-Z][a-zA-Z0-9_]* 				{ADJ(); yylval.sval=String(yytext); return ID;}
 [0-9]+	 							{ADJ(); yylval.ival=atoi(yytext); return INT;}
-([0-9]+"."[0-9]*)|([0-9]*"."[0-9]+) {ADJ(); yylval.ival=atof(yytext); return REAL;}
 .	 								{ADJ(); EM_error(EM_tokPos,"illegal token");}
 
 %%
+
