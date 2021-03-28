@@ -2,9 +2,9 @@
 lex.yy.c
 lex.yy.o
 *.output
-y.tab.c
-y.tab.h
-y.tab.o
+tiger.tab.c
+tiger.tab.h
+tiger.tab.o
 util.o
 driver.o
 errormsg.o

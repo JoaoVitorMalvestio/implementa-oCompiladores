@@ -50,10 +50,10 @@ root: /* empty */ {}
 
 exp:    INT {printTest("INT");}
       | STRING {printTest("STRING");}
-      | NIL {printTest("NILL");}
+      | NIL {printTest("NIL");}
       | lvalue {printTest("LVALUE");}
       | lvalue ASSIGN exp {printTest("LVALUE ASSIGN");}
-      | lparen explist rparen {printTest("LPAREN RPAREN");}
+      | lparen explist rparen {printTest("LPAREN EXPLIST RPAREN");}
       | cond {printTest("COND");}
       | let {printTest("LET");}
       | exp OR exp {printTest("OR");}
@@ -66,6 +66,7 @@ exp:    INT {printTest("INT");}
       | exp MINUS exp {printTest("MINUS");}
       | exp TIMES exp {printTest("TIMES");}
       | exp DIVIDE exp {printTest("DIVIDE");}
+      | exp NULLCOALESCE exp {printTest("NULLCOALESCE");}
       | MINUS exp %prec UMINUS {printTest("MINUS UMINUS");}
       | exp EQ exp {printTest("EQ");}
       | exp NEQ exp {printTest("NEQ");}
@@ -82,7 +83,7 @@ reclist:    /* empty */ {}
 let:  LET decs IN explist END {printTest("EXPRESSION LET");}
       ;
 
-arglist:    /* empty */ {}
+arglist:    /* empty */ {printTest("ARGLIST SEM PARAMETROS");}
       | nonarglist {printTest("ARGLIST");}
       ;
 
@@ -105,7 +106,7 @@ lvalue:     id %prec LOW {printTest("LOW");}
       | lvalue DOT id {printTest("LVALUE DOT");}
       ;
 
-explist:    /* empty */ {}
+explist:    /* empty */ {printTest("EXPLIST VAZIO");}
       | exp	{printTest("EXPLIST");}
       | exp SEMICOLON explist {printTest("EXPLIST SEMICOLON");}
       ;
