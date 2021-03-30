@@ -95,7 +95,7 @@ decs: /* empty */ {}
       | dec decs {printTest("EXPRESSION DEC DECS");}
       ;
 
-dec:  TYPE {printTest("DEC TYPE");}
+dec:  tydec {printTest("DEC TYPE");}
       | vardec {printTest("DEC VARDEC");}
       | fundec {printTest("DE FUNDEC");}
       ;
