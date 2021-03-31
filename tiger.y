@@ -57,8 +57,7 @@ exp:    let {printTest("LET");}
       | loop {printTest("LOOP");}
       | compar {printTest("COMPAR");}
       | arit {printTest("ARIT");}    
-      | MINUS exp %prec UMINUS {printTest("MINUS UMINUS");}
-      | id lparen arglist rparen {printTest("FUNCTION LPAREN RPAREN");}
+      | callfunc {printTest("CALLFUNC");}
       | id LBRACK exp RBRACK OF exp {printTest("LBRACK RBRACK OF");}
       | id LBRACE reclist RBRACE {printTest("LBRACE RBRACE");}
       | BREAK {printTest("BREAK");}
@@ -72,6 +71,10 @@ arit:  valarit PLUS valarit {printTest("PLUS");}
 
 valarit: lvalue {printTest("VALARIT LVALUE");}
       | prim {printTest("VALARIT PRIM");}
+      | callfunc {printTest("VALARIT CALLFUNC");}
+      ;
+
+callfunc: id lparen arglist rparen {printTest("FUNCTION LPAREN RPAREN");}
       ;
 
 compar: exp OR exp {printTest("OR");}

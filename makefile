@@ -1,4 +1,4 @@
-build: test a.out
+build: a.out
 
 test: 
 	python3 validateSamples.py 
