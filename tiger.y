@@ -58,7 +58,7 @@ exp:    let {printTest("LET");}
       | compar {printTest("COMPAR");}
       | arit {printTest("ARIT");}    
       | callfunc {printTest("CALLFUNC");}
-      | id LBRACK exp RBRACK OF exp {printTest("LBRACK RBRACK OF");}
+      | arrdec {printTest("ARRDEC");}
       | id LBRACE reclist RBRACE {printTest("LBRACE RBRACE");}
       | BREAK {printTest("BREAK");}
       ;
@@ -94,6 +94,7 @@ let:  LET decs IN explist END {printTest("EXPRESSION LET");}
 prim: int {printTest("INT");}
       | STRING {printTest("STRING");}
       | NIL {printTest("NIL");}
+      | MINUS int {printTest("MINUS INT");}
       ;
 
 reclist:    /* empty */ {}
@@ -118,6 +119,9 @@ dec:  tydec {printTest("DEC TYPE");}
       | vardec {printTest("DEC VARDEC");}
       | fundec {printTest("DE FUNDEC");}
       ;
+
+arrdec: id LBRACK exp RBRACK OF exp {printTest("ARR DEC");}
+;
 
 lvalue: id {printTest("LVALUE UNICO");} 
       | id LBRACK exp RBRACK {printTest("ID LBRACK RBRACK");}
