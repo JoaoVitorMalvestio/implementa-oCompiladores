@@ -1,0 +1,63 @@
+LLVM_INCLUDE = -I /usr/lib/llvm-10/include
+LLVM_LIBS = -L /usr/lib/llvm-10/lib
+
+#make full (delete dynamic files and generates lexical, syntactic and semantic analyzer files)
+full: clean lex parse semantic
+
+#make semantic (generates the semantic analyzer files)
+semantic: runtime.o symboltable.o codegencontext.o codegen.o ast.o semantic.o
+	g++ -g -o semantic runtime.o symboltable.o codegencontext.o codegen.o ast.o semantic.o $(LLVM_LIBS) -lLLVM-10
+
+semantic.o: semantic.cpp ast.h
+	g++ $(LLVM_INCLUDE) -g -c semantic.cpp
+
+ast.o: ast.cpp ast.h symboltable.h
+	g++ $(LLVM_INCLUDE) -g -c ast.cpp
+
+codegen.o: codegen.cpp codegencontext.h ast.h
+	g++ $(LLVM_INCLUDE) -g -c codegen.cpp
+
+codegencontext.o: codegencontext.cpp codegencontext.h
+	g++ $(LLVM_INCLUDE) -g -c codegencontext.cpp
+
+runtime.o: runtime.cpp
+	g++ $(LLVM_INCLUDE) -g -c runtime.cpp
+
+symboltable.o: symboltable.cpp symboltable.h
+	g++ $(LLVM_INCLUDE) -g -c symboltable.cpp
+
+#make parse (generates the syntatic analyzer files)
+parse: parse.o y.tab.o lex.yy.o errormsg.o util.o
+	cc -g -o parse parse.o y.tab.o lex.yy.o errormsg.o util.o
+
+parse.o: parse.c errormsg.h util.h
+	cc -g -c parse.c
+
+#make lex (generates the lexical analyzer files)
+lex: y.tab.o lex.yy.o driver.o errormsg.o util.o
+	cc -g -o lex y.tab.o driver.o lex.yy.o errormsg.o util.o 
+
+driver.o: driver.c y.tab.h errormsg.h util.h
+	cc -g -c driver.c
+
+errormsg.o: errormsg.c errormsg.h util.h
+	cc -g -c errormsg.c
+
+lex.yy.o: lex.yy.c y.tab.h errormsg.h util.h
+	cc -g -c lex.yy.c
+
+lex.yy.c: tiger.l
+	lex tiger.l
+
+util.o: util.c util.h
+	cc -g -c util.c
+
+y.tab.o: y.tab.c
+	g++ $(LLVM_INCLUDE) -g -c y.tab.c
+
+y.tab.c: tiger.y
+	yacc -dv tiger.y
+
+#make clean (delete dynamic files)
+clean: 
+	rm -f *.out* *.o lex parse lex.yy.c y.tab.* *.tab.grm y.output *.h.gch

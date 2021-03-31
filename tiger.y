@@ -48,14 +48,13 @@ root: /* empty */ {}
       |exp {}
       ;
 
-exp:    INT {printTest("INT");}
-      | STRING {printTest("STRING");}
-      | NIL {printTest("NIL");}
+exp:    let {printTest("LET");}
+      | prim {printTest("PRIMITIVES");}
       | lvalue {printTest("LVALUE");}
       | lvalue ASSIGN exp {printTest("LVALUE ASSIGN");}
       | lparen explist rparen {printTest("LPAREN EXPLIST RPAREN");}
       | cond {printTest("COND");}
-      | let {printTest("LET");}
+      | loop {printTest("LOOP");}
       | exp OR exp {printTest("OR");}
       | exp AND exp {printTest("AND");}
       | exp LT exp {printTest("LT");}
@@ -63,9 +62,9 @@ exp:    INT {printTest("INT");}
       | exp LE exp {printTest("LE");}
       | exp GE exp {printTest("GE");}
       | exp PLUS exp {printTest("PLUS");}
-      | exp MINUS exp {printTest("MINUS");}
-      | exp TIMES exp {printTest("TIMES");}
       | exp DIVIDE exp {printTest("DIVIDE");}
+      | exp MINUS exp {printTest("MINUS");}
+      | exp TIMES exp {printTest("TIMES");}      
       | exp NULLCOALESCE exp {printTest("NULLCOALESCE");}
       | MINUS exp %prec UMINUS {printTest("MINUS UMINUS");}
       | exp EQ exp {printTest("EQ");}
@@ -76,12 +75,19 @@ exp:    INT {printTest("INT");}
       | BREAK {printTest("BREAK");}
       ;
 
+let:  LET decs IN explist END {printTest("EXPRESSION LET");}
+      ;
+
+prim: INT {printTest("INT");}
+      | STRING {printTest("STRING");}
+      | NIL {printTest("NIL");}
+      ;
+
 reclist:    /* empty */ {}
       | id EQ exp	{printTest("RECLIST");}
       | id EQ exp	COMMA reclist {printTest("RECLIST COMMA");}
 
-let:  LET decs IN explist END {printTest("EXPRESSION LET");}
-      ;
+
 
 arglist:    /* empty */ {printTest("ARGLIST SEM PARAMETROS");}
       | nonarglist {printTest("ARGLIST");}
@@ -100,10 +106,10 @@ dec:  tydec {printTest("DEC TYPE");}
       | fundec {printTest("DE FUNDEC");}
       ;
 
-lvalue:     id %prec LOW {printTest("LOW");}
+lvalue:     id {printTest("LVALUE UNICO");} 
       | id LBRACK exp RBRACK {printTest("ID LBRACK RBRACK");}
       | lvalue LBRACK exp RBRACK {printTest("LVALUE LBRACK RBRACK");}
-      | lvalue DOT id {printTest("LVALUE DOT");}
+      | lvalue DOT id {printTest("LVALUE DOT");} 
       ;
 
 explist:    /* empty */ {printTest("EXPLIST VAZIO");}
@@ -113,7 +119,9 @@ explist:    /* empty */ {printTest("EXPLIST VAZIO");}
 
 cond: IF exp THEN exp ELSE exp {printTest("IF THEN ELSE");}
       | IF exp THEN exp	{printTest("IF THEN");}
-      | WHILE exp DO exp {printTest("WHILE DO");}
+      ;      
+
+loop:  WHILE exp DO exp {printTest("WHILE DO");}
       | FOR id ASSIGN exp TO exp DO exp {printTest("FOR ASSIGN TO DO");}
       ;
 
