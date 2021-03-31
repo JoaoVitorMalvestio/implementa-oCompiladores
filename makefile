@@ -1,3 +1,7 @@
+build: test a.out
+
+test: 
+	python3 validateSamples.py 
 a.out: clean tiger.tab.o lex.yy.o errormsg.o util.o
 	cc -g tiger.tab.o lex.yy.o errormsg.o util.o
 
