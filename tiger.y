@@ -7,7 +7,7 @@ int yylex(void);
 
 void printTest(string field)
 {
-  printf("Eu sou %s\n", field);
+  //printf("Eu sou %s\n", field);
 }
 
 void yyerror(char *s)
@@ -55,30 +55,40 @@ exp:    let {printTest("LET");}
       | lparen explist rparen {printTest("LPAREN EXPLIST RPAREN");}
       | cond {printTest("COND");}
       | loop {printTest("LOOP");}
-      | exp OR exp {printTest("OR");}
-      | exp AND exp {printTest("AND");}
-      | exp LT exp {printTest("LT");}
-      | exp GT exp {printTest("GT");}
-      | exp LE exp {printTest("LE");}
-      | exp GE exp {printTest("GE");}
-      | exp PLUS exp {printTest("PLUS");}
-      | exp DIVIDE exp {printTest("DIVIDE");}
-      | exp MINUS exp {printTest("MINUS");}
-      | exp TIMES exp {printTest("TIMES");}      
-      | exp NULLCOALESCE exp {printTest("NULLCOALESCE");}
+      | compar {printTest("COMPAR");}
+      | arit {printTest("ARIT");}    
       | MINUS exp %prec UMINUS {printTest("MINUS UMINUS");}
-      | exp EQ exp {printTest("EQ");}
-      | exp NEQ exp {printTest("NEQ");}
       | id lparen arglist rparen {printTest("FUNCTION LPAREN RPAREN");}
       | id LBRACK exp RBRACK OF exp {printTest("LBRACK RBRACK OF");}
       | id LBRACE reclist RBRACE {printTest("LBRACE RBRACE");}
       | BREAK {printTest("BREAK");}
       ;
 
+arit:  valarit PLUS valarit {printTest("PLUS");}
+      | valarit DIVIDE valarit {printTest("DIVIDE");}
+      | valarit MINUS valarit {printTest("MINUS");}
+      | valarit TIMES valarit {printTest("TIMES");}  
+      ;
+
+valarit: lvalue {printTest("VALARIT LVALUE");}
+      | prim {printTest("VALARIT PRIM");}
+      ;
+
+compar: exp OR exp {printTest("OR");}
+      | exp AND exp {printTest("AND");}
+      | exp LT exp {printTest("LT");}
+      | exp GT exp {printTest("GT");}
+      | exp LE exp {printTest("LE");}
+      | exp GE exp {printTest("GE");}
+      | exp EQ exp {printTest("EQ");}
+      | exp NEQ exp {printTest("NEQ");}
+      | exp NULLCOALESCE exp {printTest("NULLCOALESCE");}
+      ;
+
 let:  LET decs IN explist END {printTest("EXPRESSION LET");}
       ;
 
-prim: INT {printTest("INT");}
+prim: int {printTest("INT");}
       | STRING {printTest("STRING");}
       | NIL {printTest("NIL");}
       ;
@@ -86,7 +96,7 @@ prim: INT {printTest("INT");}
 reclist:    /* empty */ {}
       | id EQ exp	{printTest("RECLIST");}
       | id EQ exp	COMMA reclist {printTest("RECLIST COMMA");}
-
+;
 
 
 arglist:    /* empty */ {printTest("ARGLIST SEM PARAMETROS");}
@@ -106,7 +116,7 @@ dec:  tydec {printTest("DEC TYPE");}
       | fundec {printTest("DE FUNDEC");}
       ;
 
-lvalue:     id {printTest("LVALUE UNICO");} 
+lvalue: id {printTest("LVALUE UNICO");} 
       | id LBRACK exp RBRACK {printTest("ID LBRACK RBRACK");}
       | lvalue LBRACK exp RBRACK {printTest("LVALUE LBRACK RBRACK");}
       | lvalue DOT id {printTest("LVALUE DOT");} 
@@ -146,6 +156,8 @@ vardec: VAR id ASSIGN exp {printTest("VARDEC");}
       ;
 
 id:   ID {printTest("ID");}
+      ;
+int: INT {printTest("INT");}
       ;
 
 fundec: FUNCTION id lparen tyfields rparen EQ exp {printTest("FUNDEC");}
