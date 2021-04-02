@@ -4,7 +4,7 @@ test:
 	python3 validateSamples.py 
 
 a.out: clean tiger.tab.o lex.yy.o errormsg.o util.o
-	cc -g tiger.tab.o lex.yy.o errormsg.o util.o
+	cc -g tiger.tab.o lex.yy.o errormsg.o util.o table.c symbol.c absyn.c prabsyn.c
 
 lextest: lex.yy.o errormsg.o util.o
 	cc -g -o lextest lex.yy.o errormsg.o util.o

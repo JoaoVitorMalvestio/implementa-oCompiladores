@@ -1,13 +1,17 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include "util.h"
 #include "errormsg.h"
 #include "symbol.h" 
 #include "absyn.h"
+#include "prabsyn.h"
 
 int yylex(void);
 
 A_exp absyn_root;
+
+FILE *pont_arq;
 
 void printTest(string field)
 {
@@ -193,7 +197,9 @@ void parse(string fname)
 }
 
 void printTree() {
- 
+ pont_arq = fopen("arquivo.txt", "w+");  
+ pr_exp(pont_arq, absyn_root, 0);
+ fclose(pont_arq);
 }
 
 int main(int argc, char **argv) {
