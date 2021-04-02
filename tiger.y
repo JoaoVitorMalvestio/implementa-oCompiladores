@@ -2,8 +2,12 @@
 #include <stdio.h>
 #include "util.h"
 #include "errormsg.h"
+#include "symbol.h" 
+#include "absyn.h"
 
 int yylex(void);
+
+A_exp absyn_root;
 
 void printTest(string field)
 {
@@ -22,6 +26,7 @@ void yyerror(char *s)
 	int pos;
 	int ival;
 	string sval;
+      A_exp exp;
 }
 
 %error-verbose
@@ -33,19 +38,18 @@ void yyerror(char *s)
 %token AND OR ASSIGN ARRAY IF THEN ELSE WHILE FOR TO LET IN END OF 
 %token BREAK NIL FUNCTION VAR TYPE DO NULLCOALESCE
 
-%type <void> program
-%type <void> root
 %type <void> exp
 %type <void> let
+%type <exp> program root
 
 %start program
 
 %%
 
-program: root{};
+program: root {absyn_root=$1;};
 
 root: /* empty */ {}
-      |exp {}
+      | exp {}
       ;
 
 exp:    let {printTest("LET");}
@@ -188,8 +192,13 @@ void parse(string fname)
  else fprintf(stderr,"Parsing failed\n");
 }
 
+void printTree() {
+ 
+}
+
 int main(int argc, char **argv) {
  if (argc!=2) {fprintf(stderr,"usage: a.out filename\n"); exit(1);}
  parse(argv[1]);
+ printTree();
  return 0;
 }
