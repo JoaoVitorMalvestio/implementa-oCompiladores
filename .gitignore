@@ -10,3 +10,4 @@ driver.o
 errormsg.o
 parsetest.o
 lextest
+arquivo.txt

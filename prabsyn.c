@@ -60,7 +60,11 @@ static void pr_oper(FILE *out, A_oper d) {
 }
 
 /* Print A_var types. Indent d spaces. */
-void pr_exp(FILE *out, A_exp v, int d) {
+void pr_exp(FILE *out, A_exp v, int d) { 
+  if (v == NULL) {    
+    return;
+  }
+
  indent(out, d);
  switch (v->kind) {
  case A_varExp:
@@ -135,6 +139,7 @@ void pr_exp(FILE *out, A_exp v, int d) {
    pr_exp(out, v->u.array.init, d+1); fprintf(out, ")");
    break;
  default:
+   fprintf(out, "NULL");
    assert(0); 
  } 
 }

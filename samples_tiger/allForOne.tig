@@ -3,18 +3,18 @@ let
 	var b :="10"
 	var c:= -10
 in
-	printf("hey");
+	/*printf("hey");
 	n := getint();
 
 	while a > 10 do 
 	(
 		b := 10;
 		a:=20;
-	);
+	)
 
 	if a = b & b = a then (
 		printf("THEY ARE EQUAL !"); /* THEY ARE EQUAL MERMO ! */
-	);
+	)
 
 	if a > b | a = b then (
 		a:=b;
@@ -22,15 +22,15 @@ in
 	)else(
 		b:=a;
 		printf("THEY ARENT EQUAL !");
-	);
+	)
 
 	while a > 10 do (
 		b:=10;
-	);
+	)
 
 	while a > 10 do (
 		b:=10;
-	);
+	)
 
 	while a < b do (
 		b:=10;
@@ -46,6 +46,6 @@ in
 		c := a*10;
 	);
 
-    a := b ?? 69;
+    a := b ?? 69;*/
 
 end
