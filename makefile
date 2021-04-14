@@ -3,8 +3,8 @@ build: a.out
 test: 
 	python3 validateSamples.py 
 
-a.out: clean tiger.tab.o lex.yy.o errormsg.o util.o
-	cc -g tiger.tab.o lex.yy.o errormsg.o util.o table.c symbol.c absyn.c prabsyn.c
+a.out: clean tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o util.o types.o
+	cc -g tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o util.o types.o
 
 lextest: lex.yy.o errormsg.o util.o
 	cc -g -o lextest lex.yy.o errormsg.o util.o
@@ -33,6 +33,15 @@ lex.yy.c: tiger.l
 util.o: util.c util.h
 	cc -g -c util.c
 
+symbol.o: symbol.c symbol.h util.h table.h
+	cc -g -c symbol.c
+
+table.o: table.c table.h util.h
+	cc -g -c table.c
+
+types.o: types.c types.h
+	cc -g -c types.c
+
 clean: 
 	rm -f a.out util.o lex.yy.o lex.yy.c errormsg.o lextest
-	rm -f a.out util.o parsetest.o lex.yy.o errormsg.o tiger.tab.c tiger.tab.h tiger.tab.o
+	rm -f a.out util.o parsetest.o lex.yy.o errormsg.o tiger.tab.c tiger.tab.h tiger.tab.o symbol.o table.o types.o

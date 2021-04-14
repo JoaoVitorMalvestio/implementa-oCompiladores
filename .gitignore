@@ -11,3 +11,8 @@ errormsg.o
 parsetest.o
 lextest
 arquivo.txt
+absyn.o
+prabsyn.o
+symbol.o
+table.o
+types.o

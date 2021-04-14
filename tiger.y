@@ -1,22 +1,15 @@
 %{
 #include <stdio.h>
-#include <stdlib.h>
 #include "util.h"
 #include "errormsg.h"
-#include "symbol.h" 
+#include "symbol.h"
 #include "absyn.h"
-#include "prabsyn.h"
 
 int yylex(void);
 
 A_exp absyn_root;
 
 FILE *pont_arq;
-
-void printTest(string field)
-{
-  //printf("Eu sou %s\n", field);
-}
 
 void yyerror(char *s)
 {
