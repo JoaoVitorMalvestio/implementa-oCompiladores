@@ -3,8 +3,8 @@ build: a.out
 test: 
 	python3 validateSamples.py 
 
-a.out: clean tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o util.o types.o
-	cc -g tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o util.o types.o
+a.out: clean tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o util.o types.o parse.o semant.o env.o
+	cc -g tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o util.o types.o parse.o semant.o env.o
 
 lextest: lex.yy.o errormsg.o util.o
 	cc -g -o lextest lex.yy.o errormsg.o util.o
@@ -42,6 +42,15 @@ table.o: table.c table.h util.h
 types.o: types.c types.h
 	cc -g -c types.c
 
+env.o: env.c env.h
+	cc -g -c env.c
+
+semant.o: semant.c semant.h
+	cc -g -c semant.c
+
+parse.o : parse.c parse.h util.h symbol.h errormsg.h absyn.h
+	cc -g -c parse.c
+
 clean: 
-	rm -f a.out util.o lex.yy.o lex.yy.c errormsg.o lextest
-	rm -f a.out util.o parsetest.o lex.yy.o errormsg.o tiger.tab.c tiger.tab.h tiger.tab.o symbol.o table.o types.o
+	rm -f a.out lex.yy.c tiger.tab.c tiger.tab.h tiger.output absyn.h.gch
+	rm -f a.out *.o

@@ -217,25 +217,3 @@ fundec_one:     FUNCTION ID LPAREN tyfields RPAREN EQ exp  {$$ = A_Fundec(EM_tok
         | FUNCTION ID LPAREN tyfields RPAREN COLON ID EQ exp  {$$ = A_Fundec(EM_tokPos,S_Symbol($2),$4,S_Symbol($7),$9);}
         ; 
 %%
-
-extern int yyparse(void);
-
-void parse(string fname) 
-{EM_reset(fname);
- if (yyparse() == 0) /* parsing worked */
-   fprintf(stderr,"Parsing successful!\n");
- else fprintf(stderr,"Parsing failed\n");
-}
-
-void printTree() {
- pont_arq = fopen("arquivo.txt", "w+"); 
- pr_exp(pont_arq, absyn_root, 0);
- fclose(pont_arq);
-}
-
-int main(int argc, char **argv) {
- if (argc!=2) {fprintf(stderr,"usage: a.out filename\n"); exit(1);}
- parse(argv[1]);
- printTree();
- return 0;
-}
