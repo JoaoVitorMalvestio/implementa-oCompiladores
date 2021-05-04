@@ -48,8 +48,8 @@ env.o: env.c env.h
 semant.o: semant.c semant.h
 	cc -g -c semant.c
 
-parse.o : parse.c parse.h util.hpp symbol.h errormsg.h absyn.h
-	cc -g -c parse.c
+parse.o : parse.cpp parse.hpp util.hpp symbol.h errormsg.h absyn.h
+	cc -g -c parse.cpp
 
 clean: 
 	rm -f a.out lex.yy.c tiger.tab.c tiger.tab.h tiger.output absyn.h.gch

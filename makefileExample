@@ -30,8 +30,8 @@ symboltable.o: symboltable.cpp symboltable.h
 parse: parse.o y.tab.o lex.yy.o errormsg.o util.o
 	cc -g -o parse parse.o y.tab.o lex.yy.o errormsg.o util.o
 
-parse.o: parse.c errormsg.h util.hpp
-	cc -g -c parse.c
+parse.o: parse.cpp errormsg.h util.hpp
+	cc -g -c parse.cpp
 
 #make lex (generates the lexical analyzer files)
 lex: y.tab.o lex.yy.o driver.o errormsg.o util.o
