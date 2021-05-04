@@ -6,7 +6,7 @@
 #include "util.hpp"
 #include "symbol.h"
 #include "absyn.h"
-#include "errormsg.h"
+#include "errormsg.hpp"
 #include "parse.hpp"
 #include <iostream>
 #include <cstdlib>
