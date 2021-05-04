@@ -24,8 +24,8 @@ parsetest.o: parsetest.c errormsg.h util.hpp
 tiger.tab.h: tiger.tab.c
 	echo "tiger.tab.h was created at the same time as tiger.tab.c"
 
-errormsg.o: errormsg.c errormsg.h util.hpp
-	cc -g -c errormsg.c
+errormsg.o: errormsg.cpp errormsg.hpp util.hpp
+	g++ errormsg.cpp
 
 lex.yy.c: tiger.l
 	lex tiger.l

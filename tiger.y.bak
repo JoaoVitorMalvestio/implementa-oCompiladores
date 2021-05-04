@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "util.hpp"
-#include "errormsg.h"
+#include "errormsg.hpp"
 #include "symbol.h" 
 #include "absyn.h"
 #include "prabsyn.h"

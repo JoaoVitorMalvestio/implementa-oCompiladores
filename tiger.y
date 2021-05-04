@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 #include "util.hpp"
-#include "errormsg.h"
+#include "errormsg.hpp"
 #include "symbol.h"
 #include "absyn.h"
 
