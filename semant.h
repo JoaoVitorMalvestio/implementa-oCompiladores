@@ -1,7 +1,7 @@
 #ifndef SEMANT_H
 #define SEMANT_H
 
-#include "env.h"
+#include "env.hpp"
 typedef void *Tr_exp;
 
 string immutable;

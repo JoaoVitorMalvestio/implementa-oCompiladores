@@ -42,8 +42,8 @@ table.o: table.c table.h util.hpp
 types.o: types.c types.h
 	cc -g -c types.c
 
-env.o: env.c env.h
-	cc -g -c env.c
+env.o: env.cpp env.hpp
+	cc -g -c env.cpp
 
 semant.o: semant.c semant.h
 	cc -g -c semant.c

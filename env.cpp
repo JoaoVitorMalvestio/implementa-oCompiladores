@@ -1,15 +1,15 @@
 #include "env.hpp"
 
 E_enventry E_VarEntry(Ty_ty ty){
-  E_enventry var_entry = checked_malloc(sizeof(*var_entry));
+  E_enventry var_entry;
   var_entry->kind = E_varEntry;
   var_entry->u.var.ty = ty;
   return var_entry;
 }
 
 E_enventry E_FunEntry(Ty_tyList formals, Ty_ty result){
-  E_enventry fun_entry = checked_malloc(sizeof(*fun_entry));
-  fun_entry->kind = E_funEntry;
+  E_enventry fun_entry;
+  fun_entry->kind = Kind::E_funEntry;
   fun_entry->u.fun.formals = formals;
   fun_entry->u.fun.result = result;
   return fun_entry;
