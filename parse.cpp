@@ -1,13 +1,17 @@
 /*
- * parse.c - Parse source file.
+ * parse.cpp - Parse source file.
  */
 
 #include <stdio.h>
-#include "util.h"
+#include "util.hpp"
 #include "symbol.h"
 #include "absyn.h"
 #include "errormsg.h"
-#include "parse.h"
+#include "parse.hpp"
+#include <cstdlib>
+#include "semant.c"
+
+using namespace std;
 
 extern int yyparse(void);
 extern A_exp absyn_root;
