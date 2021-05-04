@@ -12,13 +12,13 @@
 
 bool anyErrors = false;
 
-static string fileName = "";
+static string fileName = (char*)"";
 
 static int lineNum = 1;
 
 int EM_tokPos=0;
 
-extern FILE *yyin;
+FILE *yyin;
 
 typedef struct intList {int i; struct intList *rest;} *IntList;
 
@@ -58,5 +58,5 @@ void EM_reset(string fname)
  anyErrors=false; fileName=fname; lineNum=1;
  linePos=intList(0,NULL);
  yyin = fopen(fname,"r");
- if (!yyin) {EM_error(0,"cannot open"); exit(1);}
+ if (!yyin) {EM_error(0,(char*)"cannot open"); exit(1);}
 }
