@@ -2,7 +2,7 @@
 #include <string.h>
 #include "util.hpp"
 #include "symbol.h"
-#include "table.h"
+#include "table.hpp"
 
 struct S_symbol_ {string name; S_symbol next;};
 

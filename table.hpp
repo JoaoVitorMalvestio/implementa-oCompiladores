@@ -1,5 +1,5 @@
 /*
- * table.h - generic hash table
+ * table.hpp - generic hash table
  *
  * No algorithm should use these functions directly, because
  *  programming with void* is too error-prone.  Instead,

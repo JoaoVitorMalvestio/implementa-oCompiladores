@@ -25,19 +25,19 @@ tiger.tab.h: tiger.tab.c
 	echo "tiger.tab.h was created at the same time as tiger.tab.c"
 
 errormsg.o: errormsg.cpp errormsg.hpp util.hpp
-	g++ errormsg.cpp
+	g++ -g -c errormsg.cpp
 
 lex.yy.c: tiger.l
 	lex tiger.l
 
 util.o: util.cpp util.hpp
-	cc -g -c util.cpp
+	g++ -g -c util.cpp
 
-symbol.o: symbol.c symbol.h util.hpp table.h
+symbol.o: symbol.c symbol.h util.hpp table.hpp
 	cc -g -c symbol.c
 
-table.o: table.c table.h util.hpp
-	cc -g -c table.c
+table.o: table.cpp table.hpp util.hpp
+	g++ -g -c table.cpp
 
 types.o: types.c types.h
 	cc -g -c types.c
