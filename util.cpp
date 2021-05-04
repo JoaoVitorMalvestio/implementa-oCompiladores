@@ -1,5 +1,5 @@
 /*
- * util.c - commonly used utility functions.
+ * util.cpp - commonly used utility functions.
  */
 
 #include <stdio.h>

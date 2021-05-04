@@ -1,6 +1,6 @@
 %{
 #include <stdio.h>
-#include "util.h"
+#include "util.hpp"
 #include "errormsg.h"
 #include "symbol.h"
 #include "absyn.h"

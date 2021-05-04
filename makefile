@@ -9,7 +9,7 @@ a.out: clean tiger.tab.o lex.yy.o errormsg.o absyn.o prabsyn.o symbol.o table.o 
 lextest: lex.yy.o errormsg.o util.o
 	cc -g -o lextest lex.yy.o errormsg.o util.o
 
-lex.yy.o: lex.yy.c tiger.tab.h errormsg.h util.h
+lex.yy.o: lex.yy.c tiger.tab.h errormsg.h util.hpp
 	cc -g -c lex.yy.c
 
 tiger.tab.o: tiger.tab.c
@@ -18,25 +18,25 @@ tiger.tab.o: tiger.tab.c
 tiger.tab.c: tiger.y
 	bison -d -t -v tiger.y
 
-parsetest.o: parsetest.c errormsg.h util.h
+parsetest.o: parsetest.c errormsg.h util.hpp
 	cc -g -c parsetest.c
 
 tiger.tab.h: tiger.tab.c
 	echo "tiger.tab.h was created at the same time as tiger.tab.c"
 
-errormsg.o: errormsg.c errormsg.h util.h
+errormsg.o: errormsg.c errormsg.h util.hpp
 	cc -g -c errormsg.c
 
 lex.yy.c: tiger.l
 	lex tiger.l
 
-util.o: util.c util.h
-	cc -g -c util.c
+util.o: util.cpp util.hpp
+	cc -g -c util.cpp
 
-symbol.o: symbol.c symbol.h util.h table.h
+symbol.o: symbol.c symbol.h util.hpp table.h
 	cc -g -c symbol.c
 
-table.o: table.c table.h util.h
+table.o: table.c table.h util.hpp
 	cc -g -c table.c
 
 types.o: types.c types.h
@@ -48,7 +48,7 @@ env.o: env.c env.h
 semant.o: semant.c semant.h
 	cc -g -c semant.c
 
-parse.o : parse.c parse.h util.h symbol.h errormsg.h absyn.h
+parse.o : parse.c parse.h util.hpp symbol.h errormsg.h absyn.h
 	cc -g -c parse.c
 
 clean: 

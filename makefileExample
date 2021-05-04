@@ -30,27 +30,27 @@ symboltable.o: symboltable.cpp symboltable.h
 parse: parse.o y.tab.o lex.yy.o errormsg.o util.o
 	cc -g -o parse parse.o y.tab.o lex.yy.o errormsg.o util.o
 
-parse.o: parse.c errormsg.h util.h
+parse.o: parse.c errormsg.h util.hpp
 	cc -g -c parse.c
 
 #make lex (generates the lexical analyzer files)
 lex: y.tab.o lex.yy.o driver.o errormsg.o util.o
 	cc -g -o lex y.tab.o driver.o lex.yy.o errormsg.o util.o 
 
-driver.o: driver.c y.tab.h errormsg.h util.h
+driver.o: driver.c y.tab.h errormsg.h util.hpp
 	cc -g -c driver.c
 
-errormsg.o: errormsg.c errormsg.h util.h
+errormsg.o: errormsg.c errormsg.h util.hpp
 	cc -g -c errormsg.c
 
-lex.yy.o: lex.yy.c y.tab.h errormsg.h util.h
+lex.yy.o: lex.yy.c y.tab.h errormsg.h util.hpp
 	cc -g -c lex.yy.c
 
 lex.yy.c: tiger.l
 	lex tiger.l
 
-util.o: util.c util.h
-	cc -g -c util.c
+util.o: util.cpp util.hpp
+	cc -g -c util.cpp
 
 y.tab.o: y.tab.c
 	g++ $(LLVM_INCLUDE) -g -c y.tab.c
