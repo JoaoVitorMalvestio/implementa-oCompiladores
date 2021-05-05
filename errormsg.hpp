@@ -1,5 +1,3 @@
-typedef char *string;
-
 extern bool EM_anyErrors;
 
 void EM_newline(void);
