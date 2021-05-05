@@ -41,7 +41,7 @@ static void pr_var(FILE *out, A_var v, int d)
   switch (v->kind)
   {
   case A_simpleVar:
-    fprintf(out, "simpleVar(%s)", );
+    fprintf(out, "simpleVar(%s)", S_name(v->u.simple));
     break;
   case A_fieldVar:
     fprintf(out, "%s\n", "fieldVar(");
