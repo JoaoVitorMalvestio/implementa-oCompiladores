@@ -1,5 +1,5 @@
 /*
- * types.h - 
+ * types.hpp - 
  *
  * All types and functions declared in this header file begin with "Ty_"
  * Linked list types end with "..list"

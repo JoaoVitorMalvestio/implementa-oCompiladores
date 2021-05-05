@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "util.hpp"
-#include "symbol.h"
+#include "symbol.hpp"
 #include "table.hpp"
 
 struct S_symbol_ {string name; S_symbol next;};
