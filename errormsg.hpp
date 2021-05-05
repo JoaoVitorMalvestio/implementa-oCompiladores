@@ -1,3 +1,7 @@
+#include <iostream>
+
+using namespace std;
+
 extern bool EM_anyErrors;
 
 void EM_newline(void);
