@@ -89,7 +89,7 @@ void Ty_print(Ty_ty t)
     cout << str_ty[t->kind];
     if (t->kind == Ty_name)
     {
-      cout << ", " << S_name(t->u.name.sym)
+      cout << ", " << S_name(t->u.name.sym);
     }
   }
 }
