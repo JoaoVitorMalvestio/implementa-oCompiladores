@@ -39,8 +39,8 @@ symbol.o: symbol.c symbol.h util.hpp table.hpp
 table.o: table.cpp table.hpp util.hpp
 	g++ -g -c table.cpp
 
-types.o: types.c types.h
-	cc -g -c types.c
+types.o: types.cpp types.hpp
+	cc -g -c types.cpp
 
 env.o: env.cpp env.hpp
 	cc -g -c env.cpp
