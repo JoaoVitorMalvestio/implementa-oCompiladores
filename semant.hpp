@@ -2,6 +2,10 @@
 #define SEMANT_H
 
 #include "env.hpp"
+#include <iostream>
+
+using namespace std;
+
 typedef void *Tr_exp;
 
 string immutable;

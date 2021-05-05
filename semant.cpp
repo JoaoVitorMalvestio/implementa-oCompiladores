@@ -1,4 +1,6 @@
-#include "semant.h"
+#include "semant.hpp"
+#include "symbol.cpp"
+#include "errormsg.hpp"
 
 void SEM_transProg(A_exp exp){
 	reset = 0;
@@ -124,7 +126,7 @@ struct expty transExp(S_table venv, S_table tenv, A_exp a){
 
       if(eList) {
         string name = S_name(a->u.call.func);
-        EM_error(eList->head->pos-1-strlen(name), "para type mismatched");
+        EM_error(eList->head->pos-1-strlen(name.c_str()), "para type mismatched");
         return expTy(NULL, Ty_Int());
       }
 
@@ -351,7 +353,7 @@ void transDec(S_table venv, S_table tenv, A_dec d){
 						**/
 						string initName = S_name(init->u.record.typ);
 						string typeName = S_name(d->u.var.typ);
-						if(typeName != "" && strcmp(initName, typeName) != 0){
+						if(typeName != "" && strcmp(initName.c_str(), typeName.c_str()) != 0){
 							EM_error(d->u.var.init->pos, "type mismatch");
 						};
 						break;
@@ -359,7 +361,7 @@ void transDec(S_table venv, S_table tenv, A_dec d){
         	case Ty_array:{
         		string initName = S_name(init->u.array.typ);
 						string typeName = S_name(d->u.var.typ);
-      			if(strcmp(initName, typeName) == 0){
+      			if(strcmp(initName.c_str(), typeName.c_str()) == 0){
 							break;
 						}
         		if(S_look(tenv,d->u.var.typ)){
@@ -368,7 +370,7 @@ void transDec(S_table venv, S_table tenv, A_dec d){
 							while(ty && ty->kind == Ty_name){
 								string name = S_name(ty->u.name.sym);
 								string varName = S_name(d->u.var.typ);
-								if(strcmp("int", name) && strcmp("string", name) && strcmp(name, varName) ==0){
+								if(strcmp("int", name.c_str()) && strcmp("string", name.c_str()) && strcmp(name.c_str(), varName.c_str()) ==0){
 									synonymFlag = 1;
 									break;
 								}
