@@ -10,20 +10,20 @@ typedef struct Ty_tyList_ *Ty_tyList;
 typedef struct Ty_field_ *Ty_field;
 typedef struct Ty_fieldList_ *Ty_fieldList;
 
-enum KindTy
-	{
-		Ty_record,
-		Ty_nil,
-		Ty_int,
-		Ty_string,
-		Ty_array,
-		Ty_name,
-		Ty_void
-	};
+enum Kind_Ty_
+{
+	Ty_record,
+	Ty_nil,
+	Ty_int,
+	Ty_string,
+	Ty_array,
+	Ty_name,
+	Ty_void
+};
 
 struct Ty_ty_
 {
-	KindTy kind;
+	Kind_Ty_ kind;
 	union
 	{
 		Ty_fieldList record;
