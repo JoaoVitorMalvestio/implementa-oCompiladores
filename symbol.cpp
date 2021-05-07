@@ -80,7 +80,7 @@ void S_endScope(S_table t)
 {
   S_symbol s;
   do
-    s = TAB_pop(t);
+    s = (S_symbol_*)TAB_pop(t);
   while (s != &marksym);
 }
 
