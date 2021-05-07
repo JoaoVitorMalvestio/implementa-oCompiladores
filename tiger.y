@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include "util.hpp"
 #include "errormsg.hpp"
-#include "symbol.h"
-#include "absyn.h"
+#include "symbol.hpp"
+#include "absyn.hpp"
 
 int yylex(void);
 
