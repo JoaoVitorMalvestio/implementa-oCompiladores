@@ -10,7 +10,7 @@
 #include "parse.hpp"
 #include <iostream>
 #include <cstdlib>
-#include "semant.c"
+#include "semant.cpp"
 
 using namespace std;
 
