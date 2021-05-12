@@ -12,16 +12,16 @@ lextest: lex.yy.o errormsg.o util.o
 lex.yy.o: lex.yy.c tiger.tab.hpp errormsg.hpp util.hpp
 	g++ -g -c lex.yy.c
 
-tiger.tab.o: tiger.tab.c
-	cc -g -c tiger.tab.c
+tiger.tab.o: tiger.tab.cc
+	g++ -g -c tiger.tab.cc
 
-tiger.tab.c: tiger.y
+tiger.tab.cc: tiger.y
 	bison -d -t -v tiger.y
 
 parsetest.o: parsetest.cpp errormsg.hpp util.hpp
 	g++ -g -c parsetest.cpp
 
-tiger.tab.h: tiger.tab.c
+tiger.tab.hh: tiger.tab.cc
 	echo "tiger.tab.h was created at the same time as tiger.tab.c"
 
 errormsg.o: errormsg.cpp errormsg.hpp util.hpp
