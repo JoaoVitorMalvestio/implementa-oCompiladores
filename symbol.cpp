@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 #include "util.hpp"
 #include "symbol.hpp"
 #include "table.hpp"
+
+using namespace std;
 
 struct S_symbol_
 {

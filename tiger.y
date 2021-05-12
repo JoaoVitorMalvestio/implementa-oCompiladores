@@ -19,6 +19,9 @@ void yyerror(char *s)
 
 %locations
 
+%require "3.2"
+%language "c++"
+
 %union {
 	int pos;
 	int ival;
