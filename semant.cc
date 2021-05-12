@@ -1,7 +1,7 @@
 #include <iostream>
-#include "semant.hpp"
-#include "symbol.cpp"
-#include "errormsg.hpp"
+#include "semant.hh"
+#include "symbol.cc"
+#include "errormsg.hh"
 
 using namespace std;
 

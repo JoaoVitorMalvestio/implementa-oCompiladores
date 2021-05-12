@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
-#include "util.hpp"
-#include "symbol.hpp"
-#include "table.hpp"
+#include "util.hh"
+#include "symbol.hh"
+#include "table.hh"
 
 using namespace std;
 

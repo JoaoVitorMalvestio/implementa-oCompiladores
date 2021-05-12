@@ -3,9 +3,9 @@
  *           abstract syntax rule.
  */
 
-#include "util.hpp"
-#include "symbol.hpp" /* symbol table data structures */
-#include "absyn.hpp"	/* abstract syntax data structures */
+#include "util.hh"
+#include "symbol.hh" /* symbol table data structures */
+#include "absyn.hh"	/* abstract syntax data structures */
 #include <iostream>
 
 using namespace std;

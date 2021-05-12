@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "util.hpp"
-#include "errormsg.hpp"
+#include "util.hh"
+#include "errormsg.hh"
 #include <iostream>
 
 using namespace std;

@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "util.hpp"
-#include "symbol.hpp"
-#include "absyn.hpp"
-#include "types.hpp"
+#include "util.hh"
+#include "symbol.hh"
+#include "absyn.hh"
+#include "types.hh"
 
 typedef struct E_enventry_ *E_enventry;
 

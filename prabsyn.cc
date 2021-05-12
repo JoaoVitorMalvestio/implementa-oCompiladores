@@ -4,10 +4,10 @@
  */
 
 #include <stdio.h>
-#include "util.hpp"
-#include "symbol.hpp"  /* symbol table data structures */
-#include "absyn.hpp"   /* abstract syntax data structures */
-#include "prabsyn.hpp" /* function prototype */
+#include "util.hh"
+#include "symbol.hh"  /* symbol table data structures */
+#include "absyn.hh"   /* abstract syntax data structures */
+#include "prabsyn.hh" /* function prototype */
 #include <iostream>
 
 using namespace std;

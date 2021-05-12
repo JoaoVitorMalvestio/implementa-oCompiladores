@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <iostream>
-#include "util.hpp"
-#include "errormsg.hpp"
+#include "util.hh"
+#include "errormsg.hh"
 
 using namespace std;
 

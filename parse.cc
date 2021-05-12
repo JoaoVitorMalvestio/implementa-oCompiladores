@@ -3,14 +3,14 @@
  */
 
 #include <stdio.h>
-#include "util.hpp"
-#include "symbol.hpp"
-#include "absyn.hpp"
-#include "errormsg.hpp"
-#include "parse.hpp"
+#include "util.hh"
+#include "symbol.hh"
+#include "absyn.hh"
+#include "errormsg.hh"
+#include "parse.hh"
 #include <iostream>
 #include <cstdlib>
-#include "semant.cpp"
+#include "semant.cc"
 
 using namespace std;
 

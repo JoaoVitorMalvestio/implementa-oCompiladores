@@ -7,9 +7,9 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "util.hpp"
-#include "symbol.hpp"
-#include "types.hpp"
+#include "util.hh"
+#include "symbol.hh"
+#include "types.hh"
 
 using namespace std;
 

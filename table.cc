@@ -5,8 +5,8 @@
 
 #include <stdio.h>
 #include <cstdint>
-#include "util.hpp"
-#include "table.hpp"
+#include "util.hh"
+#include "table.hh"
 
 #define TABSIZE 127
 

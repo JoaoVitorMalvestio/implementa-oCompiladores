@@ -1,5 +1,5 @@
-#include "env.hpp"
-#include "symbol.hpp"
+#include "env.hh"
+#include "symbol.hh"
 
 E_enventry E_VarEntry(Ty_ty ty)
 {
