@@ -1,3 +1,5 @@
+#ifndef TYPES_H
+#define TYPES_H
 /*
  * types.hpp - 
  *
@@ -67,3 +69,5 @@ Ty_fieldList Ty_FieldList(Ty_field head, Ty_fieldList tail);
 
 void Ty_print(Ty_ty t);
 void TyList_print(Ty_tyList list);
+
+#endif
