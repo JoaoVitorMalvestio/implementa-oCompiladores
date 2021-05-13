@@ -1,7 +1,7 @@
 #ifndef SEMANT_H
 #define SEMANT_H
 
-#include "env.hpp"
+#include "env.hh"
 #include <iostream>
 
 using namespace std;
