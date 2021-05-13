@@ -1,3 +1,6 @@
+#ifndef ENV_H
+#define ENV_H
+
 #include <stdio.h>
 #include "util.hh"
 #include "symbol.hh"
@@ -28,3 +31,5 @@ E_enventry E_FunEntry(Ty_tyList formals, Ty_ty result);
 
 S_table E_base_tenv(void);  /*Ty_ty environment */
 S_table E_base_venv(void);  /*E_enventry environment */
+
+#endif
