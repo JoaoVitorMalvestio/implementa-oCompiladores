@@ -1,3 +1,0 @@
-/home/joao.malvestio/git/my/implementacaoCompilador/project2/build/CMakeFiles/rebuild_cache.dir
-/home/joao.malvestio/git/my/implementacaoCompilador/project2/build/CMakeFiles/edit_cache.dir
-/home/joao.malvestio/git/my/implementacaoCompilador/project2/build/CMakeFiles/tc.dir

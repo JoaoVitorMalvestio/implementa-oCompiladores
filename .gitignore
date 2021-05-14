@@ -1,0 +1,12 @@
+*.out
+*.output
+*.tab.c
+*.tab.h
+*.o
+*.gch
+
+lex.yy.c
+arquivo.txt
+tiger.output 
+.vscode
+source_cxx.zip

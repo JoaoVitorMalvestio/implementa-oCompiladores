@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -Wall -W -pedantic  -rdynamic CMakeFiles/tc.dir/absyn.cc.o CMakeFiles/tc.dir/driver.cc.o CMakeFiles/tc.dir/errormsg.cc.o CMakeFiles/tc.dir/main.cc.o CMakeFiles/tc.dir/symbol.cc.o CMakeFiles/tc.dir/table.cc.o CMakeFiles/tc.dir/util.cc.o CMakeFiles/tc.dir/scanner.cc.o CMakeFiles/tc.dir/parser.cc.o  -o ../tc 

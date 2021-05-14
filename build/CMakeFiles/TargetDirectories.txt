@@ -1,0 +1,3 @@
+/home/michel/implementacaoCompilador/build/CMakeFiles/rebuild_cache.dir
+/home/michel/implementacaoCompilador/build/CMakeFiles/tc.dir
+/home/michel/implementacaoCompilador/build/CMakeFiles/edit_cache.dir
