@@ -1,6 +1,7 @@
 #include <iostream>
+#include <string.h>
 #include "semant.hh"
-#include "symbol.cc"
+#include "symbol.hh"
 #include "errormsg.hh"
 
 using namespace std;

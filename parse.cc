@@ -3,14 +3,12 @@
  */
 
 #include <stdio.h>
-#include "util.hh"
 #include "symbol.hh"
 #include "absyn.hh"
 #include "errormsg.hh"
 #include "parse.hh"
 #include <iostream>
 #include <cstdlib>
-#include "semant.cc"
 
 using namespace std;
 
@@ -28,7 +26,7 @@ A_exp parse(string fname) {
  	  return NULL;
   }
 }
-
+/*
 int main(int argc, char **argv) {
  if (argc!=2) {
     cout << "usage: a.out filename\n";
@@ -37,4 +35,4 @@ int main(int argc, char **argv) {
   A_exp ast = parse(argv[1]);
   SEM_transProg(ast);
   return 0;
-}
+}*/
