@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-261a65334b412fdbece6f261b23e81cf parser.cc
-ee311a6cc2ed139632eef51f573dd647 scanner.cc

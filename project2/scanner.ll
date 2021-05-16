@@ -254,22 +254,13 @@ eol     [\n\r]+
      yylval->integerVal = atoi(yytext);
      return token::INTEGER;
  }
-
-[0-9]+"."[0-9]* {
-  yylval->doubleVal = atof(yytext);
-  return token::DOUBLE;
-}
-
+ 
 \"[^\"]*\" {yylval->stringVal=new std::string(yytext, yyleng); return token::STRING;}
 
 [A-Za-z][A-Za-z0-9_,.-]* {
   yylval->stringVal = new std::string(yytext, yyleng);
   return token::IDENTIFIER;
 }
-
-
-
-
 
 {blank} { STEP(); }
 
